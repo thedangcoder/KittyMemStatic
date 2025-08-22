@@ -16,8 +16,14 @@ jobs:
       - name: Set up NDK
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r25c   # hoặc version mà project hỗ trợ
+          ndk-version: r25c   # đổi version nếu project cần version khác
+
+      - name: Show NDK path & version
+        run: |
+          echo "NDK dir: $ANDROID_NDK_HOME"
+          $ANDROID_NDK_HOME/ndk-build --version || true
 
       - name: Build with ndk-build
         working-directory: example-android
-        run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk
+        run: |
+          ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk NDK_APPLICATION_MK=Application.mk
