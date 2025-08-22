@@ -9,6 +9,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Build NDK
-        run: $ANDROID_NDK_HOME/ndk-build -j4 -B NDK_PROJECT_PATH=. NDK_APPLICATION_MK=./Application.mk
+      - uses: actions/checkout@v4
+
+      - name: Set up NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25c   # đổi version nếu project cần version khác
+
+      - name: Show NDK path & version
+        run: |
+          echo "NDK dir: $ANDROID_NDK_HOME"
+          $ANDROID_NDK_HOME/ndk-build --version || true
+
+      - name: Build with ndk-build
+        run: |
+          $ANDROID_NDK_HOME/ndk-build -j4 -B NDK_PROJECT_PATH=. NDK_APPLICATION_MK=./Application.mk
