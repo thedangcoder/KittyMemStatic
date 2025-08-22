@@ -19,4 +19,4 @@ LOCAL_SRC_FILES := example.cpp $(KITTYMEMORY_SRC)
 ## add keystone
 LOCAL_STATIC_LIBRARIES := Keystone
 
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
