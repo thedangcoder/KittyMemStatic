@@ -24,6 +24,7 @@ jobs:
           $ANDROID_NDK_HOME/ndk-build --version || true
 
       - name: Build with ndk-build
-        working-directory: example-android
         run: |
-          ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk NDK_APPLICATION_MK=Application.mk
+          $ANDROID_NDK_HOME/ndk-build \
+            APP_BUILD_SCRIPT=example-android/Android.mk \
+            NDK_APPLICATION_MK=example-android/Application.mk
