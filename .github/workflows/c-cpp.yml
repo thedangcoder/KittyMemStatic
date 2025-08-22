@@ -29,7 +29,7 @@ jobs:
           $ANDROID_NDK_HOME/ndk-build -j4 -B NDK_PROJECT_PATH=. NDK_APPLICATION_MK=./Application.mk
 
       - name: Upload KittyMemory static libs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4   # <- đổi v3 → v4
         with:
           name: KittyMemoryLibs
           path: |
@@ -37,3 +37,4 @@ jobs:
             example-android/libs/arm64-v8a/libKittyMemoryExample.a
             example-android/libs/x86/libKittyMemoryExample.a
             example-android/libs/x86_64/libKittyMemoryExample.a
+
