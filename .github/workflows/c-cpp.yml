@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Android NDK Build
 
 on:
   push:
@@ -13,19 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: configure
-        working-directory: example-android
-        run: ./configure
+      - name: Set up NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25c   # hoặc version mà project hỗ trợ
 
-      - name: make
+      - name: Build with ndk-build
         working-directory: example-android
-        run: make
-
-      - name: make check
-        working-directory: example-android
-        run: make check
-
-      - name: make distcheck
-        working-directory: example-android
-        run: make distcheck
-
+        run: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk
